@@ -1,6 +1,11 @@
 {
   "short_name": "Chocobun",
   "name": "Chocobun App",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffebcd",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "chocobun.ico",
@@ -52,10 +57,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffebcd",
-  "orientation": "portrait"
+  ]
 }
