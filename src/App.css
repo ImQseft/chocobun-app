@@ -1,0 +1,35 @@
+.ScoreInput {
+  padding: 2.5% 2.5% 0% 2.5%;
+  margin: 2.5% 2.5% 0% 2.5%;
+}
+
+.TransmuteButton {
+  padding: 2.5% 2.5% 0% 2.5%;
+  margin: 2.5% 2.5% 0% 2.5%;
+}
+
+.TransmuteResult {
+  padding: 1% 2.5% 0% 2.5%;
+  margin: 1% 2.5% 0% 2.5%;
+}
+
+.VersionInfo {
+  text-align: center;
+  padding-top: 7.5%;
+  margin-top: 7.5%;
+}
+
+.fixedScreen {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
