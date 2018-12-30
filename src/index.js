@@ -16,13 +16,13 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register("./serWork.js")
-    .then(function(registration) {
-      console.log("Registered:", registration);
-    })
-    .catch(function(error) {
-      console.log("Registration failed: ", error);
-    });
-}
+// if ("serviceWorker" in navigator) {
+//   navigator.serviceWorker
+//     .register("./serWork.js")
+//     .then(function(registration) {
+//       console.log("Registered:", registration);
+//     })
+//     .catch(function(error) {
+//       console.log("Registration failed: ", error);
+//     });
+// }

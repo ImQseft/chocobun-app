@@ -19,6 +19,13 @@ class BotNav extends React.Component {
     vaule: 0
   };
 
+  componentDidMount() {
+    this.props.onRef(this);
+  }
+  componentWillUnmount() {
+    this.props.onRef(undefined);
+  }
+
   navToTransmute = () => {
     this.props.history.push("/");
     this.setState({ vaule: 0 });
@@ -32,26 +39,26 @@ class BotNav extends React.Component {
   render() {
     const { classes } = this.props;
 
-      return (
-        <Fragment>
-          <BottomNavigation
-            value={this.state.vaule}
-            showLabels
-            className={classes.root}
-          >
-            <BottomNavigationAction
-              onClick={this.navToTransmute}
-              label="Transmute"
-              icon={<TransmuteIcon />}
-            />
-            <BottomNavigationAction
-              onClick={this.navToCourses}
-              label="Courses"
-              icon={<ComputeIcon />}
-            />
-          </BottomNavigation>
-        </Fragment>
-      );
+    return (
+      <Fragment>
+        <BottomNavigation
+          value={this.state.vaule}
+          showLabels
+          className={classes.root}
+        >
+          <BottomNavigationAction
+            onClick={this.navToTransmute}
+            label="Transmute"
+            icon={<TransmuteIcon />}
+          />
+          <BottomNavigationAction
+            onClick={this.navToCourses}
+            label="Courses"
+            icon={<ComputeIcon />}
+          />
+        </BottomNavigation>
+      </Fragment>
+    );
   }
 }
 

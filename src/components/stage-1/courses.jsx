@@ -31,6 +31,13 @@ const fabButton = {
   position: "fixed"
 };
 
+const saveButton = {
+  right: 10,
+  top: 10,
+  position: "fixed",
+  zIndex: 10
+};
+
 class Courses extends React.Component {
   state = {
     courses: [],
@@ -168,6 +175,13 @@ class Courses extends React.Component {
             isClosed={this.handleErrorClosed}
             errorMessage={this.state.errorMessage}
           />
+          <Button
+            style={saveButton}
+            onClick={this.props.handleSave}
+            color="secondary"
+          >
+            SAVE
+          </Button>
         </Fragment>
       );
     }
