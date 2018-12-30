@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/chocobun-app/precache-manifest.59b6f2ff2d7151b31dde965a7d67a4ae.js"
+  "/chocobun-app/precache-manifest.915181055f9b4a58aae97c9347968092.js"
 );
 
 workbox.clientsClaim();
