@@ -40,7 +40,6 @@ class IndivScore extends React.Component {
     totalItems: "",
     open: false,
     counter: 1,
-    transmutedGrade: "",
     errorOpen: false,
     errorMessage: ""
   };
@@ -67,13 +66,11 @@ class IndivScore extends React.Component {
       }
 
       transmuted = Math.round(transmuted * 100) / 100;
-      this.setState({ transmutedGrade: transmuted }, () => {
-        this.props.transmutedGrade(
-          this.props.syllabusName,
-          this.state.transmutedGrade,
-          this.props.syllabusWeight
-        );
-      });
+      this.props.transmutedGrade(
+        this.props.syllabusName,
+        transmuted,
+        this.props.syllabusWeight
+      );
     }
   };
 
@@ -138,7 +135,7 @@ class IndivScore extends React.Component {
   };
 
   clearScores = () => {
-    this.setState({ allScores: [] });
+    this.setState({ allScores: [], counter: 1 });
     this.props.transmutedGrade(
       this.props.syllabusName,
       0,
@@ -147,8 +144,15 @@ class IndivScore extends React.Component {
   };
 
   handleDeleteSyllabus = () => {
-    this.clearScores();
-    this.props.deleteSyllabus(this.props.syllabusName);
+    const tempArray = this.state.allScores;
+    if (tempArray.length === 0) {
+      this.props.deleteSyllabus(this.props.syllabusName);
+    } else {
+      this.setState({
+        errorOpen: true,
+        errorMessage: "Please clear scores before deleting syllabus."
+      });
+    }
   };
 
   render() {
@@ -158,7 +162,7 @@ class IndivScore extends React.Component {
         <SimpleStorage
           parent={this}
           prefix={"is_" + this.props.courseName + "_" + this.props.syllabusName}
-          blacklist={["open"]}
+          blacklist={["open", "errorOpen", "errorMessage"]}
         />
         <Paper className={classes.root}>
           <Table className={classes.table}>
