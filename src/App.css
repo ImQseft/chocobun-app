@@ -1,16 +1,18 @@
 .ScoreInput {
-  padding: 2.5% 2.5% 0% 2.5%;
-  margin: 2.5% 2.5% 0% 2.5%;
+  margin: 5% 5% 0% 5%;
 }
 
 .TransmuteButton {
-  padding: 2.5% 2.5% 0% 2.5%;
-  margin: 2.5% 2.5% 0% 2.5%;
+  margin: 5% 5% 0% 5%;
+}
+
+.AddSyllabusDiv {
+  position: relative;
+  width: 100%;
 }
 
 .TransmuteResult {
-  padding: 1% 2.5% 0% 2.5%;
-  margin: 1% 2.5% 0% 2.5%;
+  margin: 2% 5% 0% 5%;
 }
 
 .VersionInfo {
@@ -19,10 +21,10 @@
   margin-top: 7.5%;
 }
 
-.fixedScreen {
-  overflow: hidden;
+.PositionFixed {
   position: fixed;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 
 .noselect {
@@ -32,4 +34,34 @@
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+.botnav {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+
+.FinalSGrade {
+  margin: 5% 5% 0% 5%;
+}
+
+.smallTextField {
+  width: 18vw;
+}
+
+.deleteSyllabus {
+  margin-top: 10%;
+  text-align: center;
+}
+
+.tableButtons {
+  width: 100%;
+  margin: 5% 5% 5% 5%;
+}
+
+.alignRight {
+  position: absolute;
+  right: 0;
+  margin-right: 5%;
 }

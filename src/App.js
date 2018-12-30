@@ -1,27 +1,19 @@
 import React, { Component } from "react";
 import "./App.css";
-
-//Import Components
-import NavBar from "./components/navbar";
-import FillForm from "./components/fillform";
+import Main from "./components/main";
 
 class App extends Component {
   render() {
     return (
-      (document.body.style = "background: #ffebcd"),
-      (
-        <div className="fixedScreen noselect">
-          <NavBar />
-          <FillForm />
-        </div>
-      )
+      <div className="App">
+        <Main />
+      </div>
     );
   }
 }
-
 export default App;
 
-//Disable Zooming
+//Disable zooming to feel more native
 window.addEventListener(
   "touchmove",
   function(event) {

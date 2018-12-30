@@ -2,24 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import brown from "@material-ui/core/colors/brown";
+import ChocobunTheme from "./chocobuntheme.json";
+import { CssBaseline } from "@material-ui/core";
 
-const theme = createMuiTheme({
-  typography: {
-    useNextVariants: true
-  },
-  palette: {
-    primary: {
-      main: brown[500]
-    },
-    background: "#ffebcd"
-  }
-});
+const theme = createMuiTheme(ChocobunTheme);
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
+    <CssBaseline />
     <App />
   </MuiThemeProvider>,
   document.getElementById("root")
