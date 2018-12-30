@@ -1,4 +1,4 @@
-var CACHE_NAME = "static-v017";
+var CACHE_NAME = "static-v100";
 var urlsToCache = [".", "index.html"];
 var expectedCaches = [CACHE_NAME];
 
@@ -10,8 +10,6 @@ self.addEventListener("install", function(event) {
     })
   );
 });
-
-//Old working code
 
 self.addEventListener("fetch", function(event) {
   event.respondWith(
@@ -36,25 +34,6 @@ function fetchAndCache(url) {
       console.log("Request failed:", error);
     });
 }
-
-//Trial code update
-
-// self.addEventListener("fetch", event => {
-//   const url = new URL(event.request.url);
-
-//   if (url.origin == location.origin && url.pathname == "/") {
-//     event.respondWith(caches.match(event.request));
-//     return;
-//   }
-
-//   event.respondWith(
-//     caches
-//       .match(event.request)
-//       .then(response => response || fetch(event.request))
-//   );
-// });
-
-//End of trial code update
 
 self.addEventListener("activate", event => {
   event.waitUntil(
