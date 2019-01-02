@@ -1,4 +1,4 @@
-var CACHE_NAME = "static-v103";
+var CACHE_NAME = "static-v104";
 var urlsToCache = [".", "index.html"];
 var expectedCaches = [CACHE_NAME];
 
