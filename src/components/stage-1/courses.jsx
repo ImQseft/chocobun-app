@@ -15,8 +15,8 @@ import AddIcon from "@material-ui/icons/Add";
 import IndividualCourse from "../stage-2/individualcourse";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import SimpleStorage from "react-simple-storage";
-import ErrorMessage from "../errormessage";
-import ErrorSnackBar from "../errorsnackbar";
+import ErrorMessage from "../extra-pages/errormessage";
+import ErrorSnackBar from "../extra-pages/errorsnackbar";
 
 const styles = theme => ({
   root: {

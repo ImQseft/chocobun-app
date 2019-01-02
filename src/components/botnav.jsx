@@ -16,7 +16,8 @@ const styles = {
 
 class BotNav extends React.Component {
   state = {
-    vaule: 0
+    vaule: 0,
+    test: true
   };
 
   componentDidMount() {

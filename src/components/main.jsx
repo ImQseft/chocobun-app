@@ -4,9 +4,9 @@ import BotNav from "./botnav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Transmute from "./stage-1/transmute";
 import Courses from "./stage-1/courses";
-import PageError from "./stage-1/pageerror";
+import PageError from "./extra-pages/pageerror";
 import { Fragment } from "react";
-import ErrorSnackBar from "./errorsnackbar";
+import ErrorSnackBar from "./extra-pages/errorsnackbar";
 
 class Main extends React.Component {
   state = {

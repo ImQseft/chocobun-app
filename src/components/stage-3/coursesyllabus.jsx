@@ -19,7 +19,7 @@ import SimpleStorage from "react-simple-storage";
 import IndivScore from "./indivscore";
 import update from "immutability-helper";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import ErrorSnackBar from "../errorsnackbar";
+import ErrorSnackBar from "../extra-pages/errorsnackbar";
 
 const styles = theme => ({
   root: {

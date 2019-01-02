@@ -18,7 +18,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import SimpleStorage from "react-simple-storage";
-import ErrorSnackBar from "../errorsnackbar";
+import ErrorSnackBar from "../extra-pages/errorsnackbar";
 
 const styles = theme => ({
   root: {
