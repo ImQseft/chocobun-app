@@ -66,8 +66,8 @@ const InstallInstructions = () => {
           <li>
             <Typography variant="body1">
               If a banner pops up, just tap "Add Chocobun to Home screen" then
-              proceed to the last step. Otherwise, skip this step and proceed to
-              the next.
+              proceed to step 5. Otherwise, skip this step and proceed to step
+              3.
             </Typography>
             <img src={Installa1} alt="Step 2" width="90%" />
           </li>
@@ -83,8 +83,8 @@ const InstallInstructions = () => {
           </li>
           <li>
             <Typography variant="body1">
-              Tap "Add". This might take a few seconds, but the app should pop
-              into your home screen once it's done installing.
+              Tap "Add". Installing might take a few seconds. After it's done,
+              the app should automatically appear in your home screen.
             </Typography>
             <img src={Installa4} alt="Step 5" width="90%" />
           </li>
