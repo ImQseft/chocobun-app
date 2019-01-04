@@ -105,17 +105,19 @@ class IndividualCourse extends React.Component {
               </Button>
             </Toolbar>
           </AppBar>
-          <CourseSyllabus
-            finalGrade={this.handleGrades}
-            selectedCourse={this.props.courseName}
-            addSyllabus={this.handleAdd}
-            onRef={ref => (this.courseSyllabus = ref)}
-          />
-          <Chip
-            className="FinalSGrade"
-            label={"Final Grade: " + finalGrade}
-            color="primary"
-          />
+          <div>
+            <CourseSyllabus
+              finalGrade={this.handleGrades}
+              selectedCourse={this.props.courseName}
+              addSyllabus={this.handleAdd}
+              onRef={ref => (this.courseSyllabus = ref)}
+            />
+            <Chip
+              className="FinalSGrade"
+              label={"Final Grade: " + finalGrade}
+              color="primary"
+            />
+          </div>
         </Dialog>
       </Fragment>
     );

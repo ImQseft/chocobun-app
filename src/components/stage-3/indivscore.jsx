@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -20,13 +18,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import SimpleStorage from "react-simple-storage";
 import ErrorSnackBar from "../extra-pages/errorsnackbar";
 
-const styles = theme => ({
-  root: {
-    width: "100%",
-    marginTop: theme.spacing.unit * 3,
-    overflowX: "auto"
-  }
-});
+
 
 function createData(name, yscore, titems) {
   return { name, yscore, titems };
@@ -156,7 +148,6 @@ class IndivScore extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
     return (
       <Fragment>
         <SimpleStorage
@@ -164,8 +155,8 @@ class IndivScore extends React.Component {
           prefix={"is_" + this.props.courseName + "_" + this.props.syllabusName}
           blacklist={["open", "errorOpen", "errorMessage"]}
         />
-        <Paper className={classes.root}>
-          <Table className={classes.table}>
+        <Paper className="tableBody">
+          <Table>
             <TableHead>
               <TableRow>
                 <TableCell align="right">
@@ -274,8 +265,4 @@ class IndivScore extends React.Component {
   }
 }
 
-IndivScore.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(IndivScore);
+export default (IndivScore);

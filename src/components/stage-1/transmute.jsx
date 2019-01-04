@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
@@ -9,17 +7,13 @@ import Button from "@material-ui/core/Button";
 import { Fragment } from "react";
 import ClearMenu from "../clearmenu";
 
-const styles = theme => ({
-  //
-});
-
 class Transmute extends React.Component {
   state = {
     base: "65",
     yourScore: "",
     totalItems: "",
     res1: "Chocobun App by Chocobun Fam",
-    res2: "v1.0.6"
+    res2: "v1.0.7"
   };
 
   handleReset = () => {
@@ -28,7 +22,7 @@ class Transmute extends React.Component {
       yourScore: "",
       totalItems: "",
       res1: "Chocobun App by Chocobun Fam",
-      res2: "v1.0.6"
+      res2: "v1.0.7"
     });
   };
 
@@ -67,7 +61,6 @@ class Transmute extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
 
     return (
       <Fragment>
@@ -88,7 +81,6 @@ class Transmute extends React.Component {
             <TextField
               id="standard-yourScore"
               label="Your Score"
-              className={classes.textField}
               value={this.state.yourScore}
               onChange={this.handleChange("yourScore")}
               margin="normal"
@@ -98,7 +90,6 @@ class Transmute extends React.Component {
             <TextField
               id="standard-totalItems"
               label="Total Items"
-              className={classes.textField}
               value={this.state.totalItems}
               onChange={this.handleChange("totalItems")}
               margin="normal"
@@ -126,8 +117,4 @@ class Transmute extends React.Component {
   }
 }
 
-Transmute.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(Transmute);
+export default Transmute;

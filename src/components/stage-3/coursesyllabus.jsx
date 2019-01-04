@@ -112,7 +112,7 @@ class CourseSyllabus extends React.Component {
     const listSyllabus = allSyllabus.map(syllabus => syllabus.name);
     if (
       !listSyllabus.includes(syllabusName) &&
-      syllabusName !== "" &&
+      syllabusName.trim() !== "" &&
       /^\d+$/.test(weight)
     ) {
       this.props.addSyllabus(this.props.selectedCourse, syllabusName);
@@ -127,7 +127,7 @@ class CourseSyllabus extends React.Component {
         errorOpen: true,
         errorMessage: "Label already used."
       });
-    } else if (syllabusName === "") {
+    } else if (syllabusName.trim() === "") {
       this.setState({
         errorOpen: true,
         errorMessage: "Label can't be blank."

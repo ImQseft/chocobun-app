@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -17,13 +15,6 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import SimpleStorage from "react-simple-storage";
 import ErrorMessage from "../extra-pages/errormessage";
 import ErrorSnackBar from "../extra-pages/errorsnackbar";
-
-const styles = theme => ({
-  root: {
-    width: "100%",
-    backgroundColor: theme.palette.background.paper
-  }
-});
 
 const fabButton = {
   right: 20,
@@ -64,7 +55,7 @@ class Courses extends React.Component {
   handleAdd = () => {
     if (
       !this.state.courses.includes(this.state.courseName) &&
-      this.state.courseName !== ""
+      this.state.courseName.trim() !== ""
     ) {
       this.setState({
         courses: [...this.state.courses, this.state.courseName]
@@ -74,7 +65,7 @@ class Courses extends React.Component {
         errorOpen: true,
         errorMessage: "Course name is already used."
       });
-    } else if (this.state.courseName === "") {
+    } else if (this.state.courseName.trim() === "") {
       this.setState({
         errorOpen: true,
         errorMessage: "Course name can't be blank."
@@ -139,11 +130,6 @@ class Courses extends React.Component {
             fullWidth={true}
             open={this.state.open}
             onClose={this.handleClose}
-            PaperProps={{
-              style: {
-                backgroundColor: "#fff"
-              }
-            }}
           >
             <DialogTitle>New Course</DialogTitle>
             <DialogContent>
@@ -188,8 +174,4 @@ class Courses extends React.Component {
   }
 }
 
-Courses.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(Courses);
+export default Courses;
