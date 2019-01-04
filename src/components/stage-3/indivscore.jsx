@@ -65,7 +65,7 @@ class IndivScore extends React.Component {
         transmuted = transmuted * 50 + 50;
       }
 
-      transmuted = Math.round(transmuted * 100) / 100;
+      transmuted = Math.round(transmuted);
       this.props.transmutedGrade(
         this.props.syllabusName,
         transmuted,
