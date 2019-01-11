@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/chocobun-app/precache-manifest.490d2d138972df62d487ba6c9dbf54ed.js"
+  "/chocobun-app/precache-manifest.7f484096e4dfddf84db3e04cf995d194.js"
 );
 
 workbox.clientsClaim();
@@ -31,4 +31,9 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 workbox.routing.registerNavigationRoute("/chocobun-app/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
+});
+
+
+self.addEventListener('message', function handleSkipWaiting(event) {
+  if (event.data === 'skipWaiting') { self.skipWaiting(); }
 });
