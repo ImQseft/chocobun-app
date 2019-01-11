@@ -18,7 +18,7 @@ ReactDOM.render(
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
-    .register("./serWork.js")
+    .register("./sw.js")
     .then(function(registration) {
       console.log("Registered:", registration);
     })

@@ -5,10 +5,14 @@ import InstallInstructions from "./components/installinstructions";
 
 class App extends Component {
   render() {
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
     let displayApp;
     if (
       window.navigator.standalone ||
-      window.matchMedia("(display-mode: standalone)").matches
+      window.matchMedia("(display-mode: standalone)").matches ||
+      !isMobile
     ) {
       displayApp = <Main />;
     } else displayApp = <InstallInstructions />;
