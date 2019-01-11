@@ -1,53 +1,50 @@
-const PRECACHE = "precache-v108";
-const RUNTIME = "runtime";
-const PRECACHE_URLS = [".", "index.html"];
+var CACHE_NAME = "static-beta-v1";
+var urlsToCache = [".", "index.html"];
+var expectedCaches = [CACHE_NAME];
 
-self.addEventListener("install", event => {
+self.addEventListener("install", function(event) {
+  self.skipWaiting();
   event.waitUntil(
-    caches
-      .open(PRECACHE)
-      .then(cache => cache.addAll(PRECACHE_URLS))
-      .then(self.skipWaiting())
+    caches.open(CACHE_NAME).then(function(cache) {
+      return cache.addAll(urlsToCache);
+    })
   );
 });
+
+self.addEventListener("fetch", function(event) {
+  event.respondWith(
+    caches.match(event.request).then(function(response) {
+      return response || fetchAndCache(event.request);
+    })
+  );
+});
+
+function fetchAndCache(url) {
+  return fetch(url)
+    .then(function(response) {
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      return caches.open(CACHE_NAME).then(function(cache) {
+        cache.put(url, response.clone());
+        return response;
+      });
+    })
+    .catch(function(error) {
+      console.log("Request failed:", error);
+    });
+}
 
 self.addEventListener("activate", event => {
-  const currentCaches = [PRECACHE, RUNTIME];
   event.waitUntil(
-    caches
-      .keys()
-      .then(cacheNames => {
-        return cacheNames.filter(
-          cacheName => !currentCaches.includes(cacheName)
-        );
-      })
-      .then(cachesToDelete => {
-        return Promise.all(
-          cachesToDelete.map(cacheToDelete => {
-            return caches.delete(cacheToDelete);
-          })
-        );
-      })
-      .then(() => self.clients.claim())
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (!expectedCaches.includes(cacheName)) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
   );
-});
-
-self.addEventListener("fetch", event => {
-  if (event.request.url.startsWith(self.location.origin)) {
-    event.respondWith(
-      caches.match(event.request).then(cachedResponse => {
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-
-        return caches.open(RUNTIME).then(cache => {
-          return fetch(event.request).then(response => {
-            return cache.put(event.request, response.clone()).then(() => {
-              return response;
-            });
-          });
-        });
-      })
-    );
-  }
 });
