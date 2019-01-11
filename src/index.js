@@ -5,6 +5,8 @@ import App from "./App";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import ChocobunTheme from "./chocobuntheme.json";
 import { CssBaseline } from "@material-ui/core";
+import * as serviceWorker from "./serviceWorker";
+import initWorkboxRefresh from "@loopmode/cra-workbox-refresh";
 
 const theme = createMuiTheme(ChocobunTheme);
 
@@ -16,13 +18,10 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register("./sw.js")
-    .then(function(registration) {
-      console.log("Registered:", registration);
+serviceWorker.register({
+  onUpdate: registration =>
+    initWorkboxRefresh(registration, {
+      textContent: "New update. Tap to refresh",
+      className: "workboxRefresh"
     })
-    .catch(function(error) {
-      console.log("Registration failed: ", error);
-    });
-}
+});
