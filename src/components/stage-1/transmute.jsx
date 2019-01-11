@@ -13,7 +13,7 @@ class Transmute extends React.Component {
     yourScore: "",
     totalItems: "",
     res1: "Chocobun App by Chocobun Fam",
-    res2: "v1.0.9"
+    res2: "v1.1.0"
   };
 
   handleReset = () => {
@@ -22,7 +22,7 @@ class Transmute extends React.Component {
       yourScore: "",
       totalItems: "",
       res1: "Chocobun App by Chocobun Fam",
-      res2: "v1.0.9"
+      res2: "v1.1.0"
     });
   };
 
