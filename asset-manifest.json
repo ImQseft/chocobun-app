@@ -1,7 +1,7 @@
 {
   "main.css": "/chocobun-app/static/css/main.46dafeea.chunk.css",
-  "main.js": "/chocobun-app/static/js/main.8e8a3679.chunk.js",
-  "main.js.map": "/chocobun-app/static/js/main.8e8a3679.chunk.js.map",
+  "main.js": "/chocobun-app/static/js/main.25da508a.chunk.js",
+  "main.js.map": "/chocobun-app/static/js/main.25da508a.chunk.js.map",
   "static/js/1.e4018974.chunk.js": "/chocobun-app/static/js/1.e4018974.chunk.js",
   "static/js/1.e4018974.chunk.js.map": "/chocobun-app/static/js/1.e4018974.chunk.js.map",
   "runtime~main.js": "/chocobun-app/static/js/runtime~main.9180ac00.js",
@@ -13,6 +13,6 @@
   "static/media/installi3.png": "/chocobun-app/static/media/installi3.d99672d4.png",
   "static/css/main.46dafeea.chunk.css.map": "/chocobun-app/static/css/main.46dafeea.chunk.css.map",
   "index.html": "/chocobun-app/index.html",
-  "precache-manifest.ba7fb86ac50e4f383fb3fa43dcc94dc5.js": "/chocobun-app/precache-manifest.ba7fb86ac50e4f383fb3fa43dcc94dc5.js",
+  "precache-manifest.23f4c5bb2a24c7d0327ac310fe6bc60f.js": "/chocobun-app/precache-manifest.23f4c5bb2a24c7d0327ac310fe6bc60f.js",
   "service-worker.js": "/chocobun-app/service-worker.js"
 }
