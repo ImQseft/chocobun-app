@@ -75,19 +75,3 @@
   max-width: 100%;
   overflow-x: hidden;
 }
-
-.workboxRefresh {
-  position: absolute;
-  bottom: 24px;
-  left: 24px;
-  background-color: #795548;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  font-size: 16px;
-  margin: 5% 5% 5% 5%;
-  left: 0px;
-  bottom: 7.5vh;
-  width: 90%;
-}
