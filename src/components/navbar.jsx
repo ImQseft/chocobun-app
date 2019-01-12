@@ -5,20 +5,15 @@ import Typography from "@material-ui/core/Typography";
 import { Fragment } from "react";
 import ClearMenu from "./clearmenu";
 
-const bar = {
-  zIndex: 5
-};
-
 class NavBar extends React.Component {
-
   handleReset = () => {
-    this.props.handleReset()
-  }
+    this.props.handleReset();
+  };
 
   render() {
     return (
       <Fragment>
-        <AppBar style={bar} position="fixed" color="primary">
+        <AppBar>
           <Toolbar>
             <Typography variant="h6" color="inherit">
               Chocobun

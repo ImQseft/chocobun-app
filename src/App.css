@@ -1,55 +1,44 @@
-.ScoreInput {
+/* transmute.jsx */
+
+.scoreInput {
   margin: 5% 5% 0% 5%;
 }
 
-.TransmuteButton {
+.transmuteButton {
   margin: 5% 5% 0% 5%;
 }
 
-.AddSyllabusDiv {
-  position: relative;
-  width: 100%;
-}
-
-.TransmuteResult {
+.transmuteResult {
   margin: 2% 5% 0% 5%;
 }
 
-.VersionInfo {
-  text-align: center;
-  padding-top: 7.5%;
-  margin-top: 7.5%;
-}
-
-.PositionFixed {
+.positionFixed {
   position: fixed;
   width: 100vw;
   height: 100vh;
 }
 
-.noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
-}
+/* individualcourse.jsx */
 
-.botnav {
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-}
-
-.FinalSGrade {
+.finalSGrade {
   width: 90%;
   margin: 5% 5% 5% 5%;
 }
 
+/* coursesyllabus.jsx */
+
+.addSyllabusDiv {
+  position: relative;
+  width: 100%;
+}
+
+/* coursesyllabus.jsx */
+
 .smallTextField {
   width: 18vw;
 }
+
+/* indivscore.jsx */
 
 .deleteSyllabus {
   margin-top: 10%;
@@ -66,12 +55,33 @@
   margin-right: 5%;
 }
 
+.tableBody {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* botnav.jsx */
+
+.botnav {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+
+/* installinstructions.jsx */
+
 .installInstructions {
   margin: 5% 5% 5% 5%;
   overflow: auto;
 }
 
-.tableBody {
-  max-width: 100%;
-  overflow-x: hidden;
+/* main.jsx */
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
 }

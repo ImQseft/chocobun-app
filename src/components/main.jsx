@@ -24,7 +24,7 @@ class Main extends React.Component {
     return (
       <Router basename={process.env.PUBLIC_URL}>
         <Fragment>
-          <div className="fixedScreen noselect">
+          <div className="noselect">
             <NavBar handleReset={this.handleReset} />
             <Switch>
               <Route
@@ -51,7 +51,7 @@ class Main extends React.Component {
               <Route component={PageError} />
             </Switch>
           </div>
-          <div className="fixedScreen noselect botnav">
+          <div className="noselect botnav">
             <BotNav />
           </div>
         </Fragment>

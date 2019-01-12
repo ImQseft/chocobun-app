@@ -9,7 +9,7 @@ class ErrorSnackBar extends React.Component {
           anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
           open={this.props.isOpen}
           onClose={this.props.isClosed}
-          autoHideDuration={1250}
+          autoHideDuration={1000}
           message={this.props.errorMessage}
         />
       </div>

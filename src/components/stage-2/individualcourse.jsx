@@ -134,7 +134,7 @@ class IndividualCourse extends React.Component {
               onRef={ref => (this.courseSyllabus = ref)}
             />
             <Chip
-              className="FinalSGrade"
+              className="finalSGrade"
               label={"Final Grade: " + finalGrade}
               color="primary"
             />

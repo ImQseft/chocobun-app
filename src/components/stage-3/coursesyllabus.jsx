@@ -193,7 +193,7 @@ class CourseSyllabus extends React.Component {
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <div className="AddSyllabusDiv">
+          <div className="addSyllabusDiv">
             <IndivScore
               deleteSyllabus={this.handleDelete}
               courseName={this.props.selectedCourse}

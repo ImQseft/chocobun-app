@@ -14,6 +14,7 @@ import IndividualCourse from "../stage-2/individualcourse";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import ErrorMessage from "../extra-pages/errormessage";
 import ErrorSnackBar from "../extra-pages/errorsnackbar";
+import Toolbar from "@material-ui/core/Toolbar";
 
 const fabButton = {
   right: 20,
@@ -148,6 +149,7 @@ class Courses extends React.Component {
       return (
         <Fragment>
           <List component="nav">{listCourses}</List>
+          <Toolbar />
           <Fab
             onClick={this.handleClickOpen}
             style={fabButton}

@@ -70,8 +70,8 @@ class Transmute extends React.Component {
   render() {
     return (
       <Fragment>
-        <div className="PositionFixed">
-          <div className="ScoreInput">
+        <div className="positionFixed">
+          <div className="scoreInput">
             <FormControl>
               <InputLabel htmlFor="base-native-simple">Base</InputLabel>
               <Select
@@ -103,7 +103,7 @@ class Transmute extends React.Component {
               type="tel"
             />
           </div>
-          <div className="TransmuteButton">
+          <div className="transmuteButton">
             <Button
               onClick={this.handleTransmute}
               variant="contained"
@@ -112,7 +112,7 @@ class Transmute extends React.Component {
               Transmute
             </Button>
           </div>
-          <div className="TransmuteResult">
+          <div className="transmuteResult">
             <p>{this.state.res1}</p>
             <p>{this.state.res2}</p>
           </div>
