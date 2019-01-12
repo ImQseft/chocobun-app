@@ -1,23 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { Fragment } from "react";
-
-const styles = {
-  //
-};
 
 const bar = {
   zIndex: 5
 };
 
 class NavBar extends React.Component {
-  state = {
-    //
-  };
   render() {
     return (
       <Fragment>
@@ -34,8 +25,4 @@ class NavBar extends React.Component {
   }
 }
 
-NavBar.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(NavBar);
+export default NavBar;
