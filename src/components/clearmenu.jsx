@@ -4,7 +4,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { Fragment } from "react";
-import { clearStorage } from "react-simple-storage";
+import ErrorSnackBar from "./extra-pages/errorsnackbar";
 
 const threeDots = {
   right: 5,
@@ -15,7 +15,9 @@ const threeDots = {
 
 class ClearMenu extends React.Component {
   state = {
-    anchorEl: null
+    anchorEl: null,
+    errorOpen: false,
+    errorMessage: ""
   };
 
   handleClick = event => {
@@ -28,8 +30,16 @@ class ClearMenu extends React.Component {
 
   handleClear = () => {
     this.props.resetState();
-    clearStorage("");
+    localStorage.clear();
     this.handleClose();
+    this.setState({
+      errorOpen: true,
+      errorMessage: "Successfully cleared all data."
+    });
+  };
+
+  handleErrorClosed = () => {
+    this.setState({ errorOpen: false });
   };
 
   render() {
@@ -53,6 +63,11 @@ class ClearMenu extends React.Component {
         >
           <MenuItem onClick={this.handleClear}>Clear All Data</MenuItem>
         </Menu>
+        <ErrorSnackBar
+          isOpen={this.state.errorOpen}
+          isClosed={this.handleErrorClosed}
+          errorMessage={this.state.errorMessage}
+        />
       </Fragment>
     );
   }

@@ -12,13 +12,6 @@ class BotNav extends React.Component {
     test: true
   };
 
-  componentDidMount() {
-    this.props.onRef(this);
-  }
-  componentWillUnmount() {
-    this.props.onRef(undefined);
-  }
-
   navToTransmute = () => {
     this.props.history.push("/");
     this.setState({ vaule: 0 });
@@ -30,13 +23,9 @@ class BotNav extends React.Component {
   };
 
   render() {
-
     return (
       <Fragment>
-        <BottomNavigation
-          value={this.state.vaule}
-          showLabels
-        >
+        <BottomNavigation value={this.state.vaule} showLabels>
           <BottomNavigationAction
             onClick={this.navToTransmute}
             label="Transmute"

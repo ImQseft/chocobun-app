@@ -12,7 +12,6 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import IndividualCourse from "../stage-2/individualcourse";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import SimpleStorage from "react-simple-storage";
 import ErrorMessage from "../extra-pages/errormessage";
 import ErrorSnackBar from "../extra-pages/errorsnackbar";
 
@@ -20,13 +19,6 @@ const fabButton = {
   right: 20,
   bottom: 70,
   position: "fixed"
-};
-
-const saveButton = {
-  right: 10,
-  top: 10,
-  position: "fixed",
-  zIndex: 10
 };
 
 class Courses extends React.Component {
@@ -38,6 +30,30 @@ class Courses extends React.Component {
     activeCourse: "",
     errorOpen: false,
     errorMessage: ""
+  };
+
+  componentDidMount() {
+    this.hydrateStateWithLocalStorage();
+  }
+
+  hydrateStateWithLocalStorage() {
+    for (let state in this.state) {
+      const key = "c_" + state;
+      if (localStorage.hasOwnProperty(key)) {
+        let value = localStorage.getItem(key);
+        try {
+          value = JSON.parse(value);
+          this.setState({ [state]: value });
+        } catch (e) {
+          this.setState({ [state]: value });
+        }
+      }
+    }
+  }
+
+  updateState = (state, value) => {
+    this.setState({ [state]: value });
+    localStorage.setItem("c_" + state, JSON.stringify(value));
   };
 
   handleClickOpen = () => {
@@ -57,9 +73,10 @@ class Courses extends React.Component {
       !this.state.courses.includes(this.state.courseName) &&
       this.state.courseName.trim() !== ""
     ) {
-      this.setState({
-        courses: [...this.state.courses, this.state.courseName]
-      });
+      this.updateState("courses", [
+        ...this.state.courses,
+        this.state.courseName
+      ]);
     } else if (this.state.courses.includes(this.state.courseName)) {
       this.setState({
         errorOpen: true,
@@ -74,6 +91,14 @@ class Courses extends React.Component {
     this.handleClose();
   };
 
+  handleDelete = courseName => {
+    const tempArray = this.state.courses.filter(
+      course => course !== courseName
+    );
+    this.updateState("courses", tempArray);
+    this.handleStopEdit();
+  };
+
   handleErrorClosed = () => {
     this.setState({ errorOpen: false });
   };
@@ -84,14 +109,6 @@ class Courses extends React.Component {
 
   handleStopEdit = () => {
     this.setState({ editCourse: false });
-  };
-
-  handleDelete = courseName => {
-    const tempArray = this.state.courses.filter(
-      course => course !== courseName
-    );
-    this.setState({ courses: tempArray });
-    this.handleStopEdit();
   };
 
   render() {
@@ -111,11 +128,6 @@ class Courses extends React.Component {
       ));
       return (
         <Fragment>
-          <SimpleStorage
-            parent={this}
-            prefix="c"
-            blacklist={["open", "editCourse"]}
-          />
           <List component="nav">{listCourses}</List>
           <Fab
             onClick={this.handleClickOpen}
@@ -161,13 +173,6 @@ class Courses extends React.Component {
             isClosed={this.handleErrorClosed}
             errorMessage={this.state.errorMessage}
           />
-          <Button
-            style={saveButton}
-            onClick={this.props.handleSave}
-            color="secondary"
-          >
-            SAVE
-          </Button>
         </Fragment>
       );
     }

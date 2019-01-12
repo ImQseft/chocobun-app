@@ -10,7 +10,6 @@ import CourseSyllabus from "../stage-3/coursesyllabus";
 import { Fragment } from "react";
 import Chip from "@material-ui/core/Chip";
 import update from "immutability-helper";
-import SimpleStorage from "react-simple-storage";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 
@@ -37,12 +36,36 @@ function computeValue(listTG) {
     let finalGrade = listTG.reduce(add);
     finalGrade = Math.round(finalGrade * 100) / 100;
     return finalGrade;
-  } else return 100;
+  } else return 0;
 }
 
 class IndividualCourse extends React.Component {
   state = {
     courseGrades: []
+  };
+
+  componentDidMount() {
+    this.hydrateStateWithLocalStorage();
+  }
+
+  hydrateStateWithLocalStorage() {
+    for (let state in this.state) {
+      const key = "ic_" + state;
+      if (localStorage.hasOwnProperty(key)) {
+        let value = localStorage.getItem(key);
+        try {
+          value = JSON.parse(value);
+          this.setState({ [state]: value });
+        } catch (e) {
+          this.setState({ [state]: value });
+        }
+      }
+    }
+  }
+
+  updateState = (state, value) => {
+    this.setState({ [state]: value });
+    localStorage.setItem("ic_" + state, JSON.stringify(value));
   };
 
   handleGrades = (syllabus, transG) => {
@@ -51,20 +74,20 @@ class IndividualCourse extends React.Component {
       course =>
         course.name === this.props.courseName && course.syllabus === syllabus
     );
-    this.setState({
-      courseGrades: update(courseGrades, {
+
+    this.updateState(
+      "courseGrades",
+      update(courseGrades, {
         [index]: { grade: { $set: transG } }
       })
-    });
+    );
   };
 
   handleAdd = (course, syllabus) => {
-    this.setState({
-      courseGrades: [
-        ...this.state.courseGrades,
-        createData(course, syllabus, "0")
-      ]
-    });
+    this.updateState("courseGrades", [
+      ...this.state.courseGrades,
+      createData(course, syllabus, "0")
+    ]);
   };
 
   handleDeleteCourse = () => {
@@ -84,7 +107,6 @@ class IndividualCourse extends React.Component {
 
     return (
       <Fragment>
-        <SimpleStorage parent={this} prefix={"ic"} />
         <Dialog
           fullScreen
           open={this.props.editCourse}

@@ -15,10 +15,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import SimpleStorage from "react-simple-storage";
 import ErrorSnackBar from "../extra-pages/errorsnackbar";
-
-
 
 function createData(name, yscore, titems) {
   return { name, yscore, titems };
@@ -34,6 +31,53 @@ class IndivScore extends React.Component {
     counter: 1,
     errorOpen: false,
     errorMessage: ""
+  };
+
+  componentDidMount() {
+    this.hydrateStateWithLocalStorage();
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (
+      prevState.allScores !== this.state.allScores ||
+      prevState.base !== this.state.base
+    ) {
+      this.handleComputation();
+    }
+  }
+
+  hydrateStateWithLocalStorage() {
+    for (let state in this.state) {
+      const key =
+        "is_" +
+        this.props.courseName +
+        "_" +
+        this.props.syllabusName +
+        "_" +
+        state;
+      if (localStorage.hasOwnProperty(key)) {
+        let value = localStorage.getItem(key);
+        try {
+          value = JSON.parse(value);
+          this.setState({ [state]: value });
+        } catch (e) {
+          this.setState({ [state]: value });
+        }
+      }
+    }
+  }
+
+  updateState = (state, value) => {
+    this.setState({ [state]: value });
+    localStorage.setItem(
+      "is_" +
+        this.props.courseName +
+        "_" +
+        this.props.syllabusName +
+        "_" +
+        state,
+      JSON.stringify(value)
+    );
   };
 
   handleComputation = () => {
@@ -69,22 +113,15 @@ class IndivScore extends React.Component {
   handleAdd = () => {
     const { yourScore, totalItems } = this.state;
     if (/^\d+$/.test(yourScore) && /^\d+$/.test(totalItems)) {
-      this.setState(
-        {
-          counter: this.state.counter + 1,
-          allScores: [
-            ...this.state.allScores,
-            createData(
-              this.props.syllabusName + " " + this.state.counter,
-              this.state.yourScore,
-              this.state.totalItems
-            )
-          ]
-        },
-        () => {
-          this.handleComputation();
-        }
-      );
+      this.updateState("counter", this.state.counter + 1);
+      this.updateState("allScores", [
+        ...this.state.allScores,
+        createData(
+          this.props.syllabusName + " " + this.state.counter,
+          this.state.yourScore,
+          this.state.totalItems
+        )
+      ]);
     } else if (!/^\d+$/.test(yourScore)) {
       this.setState({
         errorOpen: true,
@@ -118,16 +155,12 @@ class IndivScore extends React.Component {
   };
 
   handleChangeBase = event => {
-    this.setState(
-      {
-        base: event.target.value
-      },
-      () => this.handleComputation()
-    );
+    this.updateState("base", event.target.value);
   };
 
   clearScores = () => {
-    this.setState({ allScores: [], counter: 1 });
+    this.updateState("allScores", []);
+    this.updateState("counter", 1);
     this.props.transmutedGrade(
       this.props.syllabusName,
       0,
@@ -150,11 +183,6 @@ class IndivScore extends React.Component {
   render() {
     return (
       <Fragment>
-        <SimpleStorage
-          parent={this}
-          prefix={"is_" + this.props.courseName + "_" + this.props.syllabusName}
-          blacklist={["open", "errorOpen", "errorMessage"]}
-        />
         <Paper className="tableBody">
           <Table>
             <TableHead>
@@ -265,4 +293,4 @@ class IndivScore extends React.Component {
   }
 }
 
-export default (IndivScore);
+export default IndivScore;

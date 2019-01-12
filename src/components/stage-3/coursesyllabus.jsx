@@ -14,7 +14,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import SimpleStorage from "react-simple-storage";
 import IndivScore from "./indivscore";
 import update from "immutability-helper";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -58,10 +57,35 @@ class CourseSyllabus extends React.Component {
 
   componentDidMount() {
     this.props.onRef(this);
+    this.hydrateStateWithLocalStorage();
   }
+
   componentWillUnmount() {
     this.props.onRef(undefined);
   }
+
+  hydrateStateWithLocalStorage() {
+    for (let state in this.state) {
+      const key = "cs_" + this.props.selectedCourse + "_" + state;
+      if (localStorage.hasOwnProperty(key)) {
+        let value = localStorage.getItem(key);
+        try {
+          value = JSON.parse(value);
+          this.setState({ [state]: value });
+        } catch (e) {
+          this.setState({ [state]: value });
+        }
+      }
+    }
+  }
+
+  updateState = (state, value) => {
+    this.setState({ [state]: value });
+    localStorage.setItem(
+      "cs_" + this.props.selectedCourse + "_" + state,
+      JSON.stringify(value)
+    );
+  };
 
   clearSyllabus = () => {
     const tempArray = this.state.allSyllabus;
@@ -98,11 +122,12 @@ class CourseSyllabus extends React.Component {
     const index = this.state.allSyllabus.findIndex(
       syllabus => syllabus.name === name
     );
-    this.setState({
-      allSyllabus: update(this.state.allSyllabus, {
+    this.updateState(
+      "allSyllabus",
+      update(this.state.allSyllabus, {
         [index]: { tg: { $set: "Transmuted Grade: " + transmutedGrade } }
       })
-    });
+    );
     this.props.finalGrade(name, (transmutedGrade * weight) / 100);
   };
 
@@ -115,12 +140,10 @@ class CourseSyllabus extends React.Component {
       /^\d+$/.test(weight)
     ) {
       this.props.addSyllabus(this.props.selectedCourse, syllabusName);
-      this.setState({
-        allSyllabus: [
-          ...allSyllabus,
-          createData(syllabusName, "Transmuted Grade: 0", weight)
-        ]
-      });
+      this.updateState("allSyllabus", [
+        ...allSyllabus,
+        createData(syllabusName, "Transmuted Grade: 0", weight)
+      ]);
     } else if (listSyllabus.includes(syllabusName)) {
       this.setState({
         errorOpen: true,
@@ -144,7 +167,7 @@ class CourseSyllabus extends React.Component {
     const tempArray = this.state.allSyllabus.filter(
       syllabus => syllabus.name !== syllabusName
     );
-    this.setState({ allSyllabus: tempArray });
+    this.updateState("allSyllabus", tempArray);
   };
 
   handleErrorClosed = () => {
@@ -186,11 +209,6 @@ class CourseSyllabus extends React.Component {
 
     return (
       <Fragment>
-        <SimpleStorage
-          parent={this}
-          prefix={"cs_" + this.props.selectedCourse}
-          blacklist={["open", "expanded", "errorOpen", "errorMessage"]}
-        />
         <div className={classes.root}>{listSyllabus}</div>
         <Fab
           onClick={this.handleClickOpen}

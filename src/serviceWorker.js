@@ -20,8 +20,7 @@ export function register(config) {
         checkValidServiceWorker(swUrl, config);
         navigator.serviceWorker.ready.then(() => {
           console.log(
-            "This web app is being served cache-first by a service " +
-              "worker. To learn more, visit http://bit.ly/CRA-PWA"
+            "This web app is being served cache-first by a service worker."
           );
         });
       } else {
@@ -44,8 +43,7 @@ function registerValidSW(swUrl, config) {
           if (installingWorker.state === "installed") {
             if (navigator.serviceWorker.controller) {
               console.log(
-                "New content is available and will be used when all " +
-                  "tabs for this page are closed. See http://bit.ly/CRA-PWA."
+                "New content is available and will be used when you refresh the page."
               );
 
               if (config && config.onUpdate) {
