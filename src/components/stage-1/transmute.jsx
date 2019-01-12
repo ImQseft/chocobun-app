@@ -5,7 +5,7 @@ import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Fragment } from "react";
-import ClearMenu from "../clearmenu";
+import app from "./../../../package.json";
 
 class Transmute extends React.Component {
   state = {
@@ -13,18 +13,25 @@ class Transmute extends React.Component {
     yourScore: "",
     totalItems: "",
     res1: "Chocobun App by Chocobun Fam",
-    res2: "v1.1.6"
+    res2: "v" + app.version
   };
 
-  handleReset = () => {
+  resetState = () => {
     this.setState({
       base: "65",
       yourScore: "",
       totalItems: "",
       res1: "Chocobun App by Chocobun Fam",
-      res2: "v1.1.6"
+      res2: "v" + app.version
     });
   };
+
+  componentDidUpdate() {
+    if (this.props.reset) {
+      this.resetState();
+      this.props.doneClear();
+    }
+  }
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
@@ -61,7 +68,6 @@ class Transmute extends React.Component {
   };
 
   render() {
-
     return (
       <Fragment>
         <div className="PositionFixed">
@@ -111,7 +117,6 @@ class Transmute extends React.Component {
             <p>{this.state.res2}</p>
           </div>
         </div>
-        <ClearMenu resetState={this.handleReset} />
       </Fragment>
     );
   }

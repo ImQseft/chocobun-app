@@ -2,10 +2,6 @@ import React from "react";
 import Snackbar from "@material-ui/core/Snackbar";
 
 class ErrorSnackBar extends React.Component {
-  state = {
-    //
-  };
-
   render() {
     return (
       <div>
@@ -13,7 +9,7 @@ class ErrorSnackBar extends React.Component {
           anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
           open={this.props.isOpen}
           onClose={this.props.isClosed}
-          autoHideDuration={1500}
+          autoHideDuration={1250}
           message={this.props.errorMessage}
         />
       </div>

@@ -32,8 +32,27 @@ class Courses extends React.Component {
     errorMessage: ""
   };
 
+  resetState = () => {
+    this.setState({
+      courses: [],
+      open: false,
+      courseName: "",
+      editCourse: false,
+      activeCourse: "",
+      errorOpen: false,
+      errorMessage: ""
+    });
+  };
+
   componentDidMount() {
     this.hydrateStateWithLocalStorage();
+  }
+
+  componentDidUpdate() {
+    if (this.props.reset) {
+      this.resetState();
+      this.props.doneClear();
+    }
   }
 
   hydrateStateWithLocalStorage() {
