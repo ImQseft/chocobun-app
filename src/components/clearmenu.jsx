@@ -22,7 +22,7 @@ class ClearMenu extends React.Component {
     anchorEl: null,
     errorOpen: false,
     errorMessage: "",
-    open: false
+    openPrompt: false
   };
 
   handleClick = event => {
@@ -35,11 +35,11 @@ class ClearMenu extends React.Component {
 
   handleDialogOpen = () => {
     this.handleClose();
-    this.setState({ open: true });
+    this.setState({ openPrompt: true });
   };
 
   handleDialogClose = () => {
-    this.setState({ open: false });
+    this.setState({ openPrompt: false });
   };
 
   handleClear = () => {
@@ -81,7 +81,7 @@ class ClearMenu extends React.Component {
         />
         <Dialog
           fullWidth={true}
-          open={this.state.open}
+          open={this.state.openPrompt}
           onClose={this.handleDialogClose}
         >
           <DialogTitle>Clear all data?</DialogTitle>

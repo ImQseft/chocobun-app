@@ -12,7 +12,6 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import IndividualCourse from "../stage-2/individualcourse";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import ErrorMessage from "../extra-pages/errormessage";
 import ErrorSnackBar from "../extra-pages/errorsnackbar";
 import Toolbar from "@material-ui/core/Toolbar";
 
@@ -133,70 +132,66 @@ class Courses extends React.Component {
 
   render() {
     const { courses } = this.state;
-    if (Number.isInteger(courses)) {
-      return <ErrorMessage />;
-    } else {
-      const listCourses = courses.map(course => (
-        <ListItem
-          key={course}
-          button
-          divider
-          onClick={this.handleEditCourse.bind(this, course)}
+    const listCourses = courses.map(course => (
+      <ListItem
+        key={course}
+        button
+        divider
+        onClick={() => this.handleEditCourse(course)}
+      >
+        <ListItemText primary={course} />
+      </ListItem>
+    ));
+    return (
+      <Fragment>
+        <List component="nav">{listCourses}</List>
+        <Toolbar />
+        <Fab
+          onClick={this.handleClickOpen}
+          style={fabButton}
+          size="medium"
+          color="primary"
+          aria-label="Add"
         >
-          <ListItemText primary={course} />
-        </ListItem>
-      ));
-      return (
-        <Fragment>
-          <List component="nav">{listCourses}</List>
-          <Toolbar />
-          <Fab
-            onClick={this.handleClickOpen}
-            style={fabButton}
-            size="medium"
-            color="primary"
-            aria-label="Add"
-          >
-            <AddIcon />
-          </Fab>
-          <Dialog
-            fullWidth={true}
-            open={this.state.open}
-            onClose={this.handleClose}
-          >
-            <DialogTitle>New Course</DialogTitle>
-            <DialogContent>
-              <TextField
-                onChange={this.handleChange("courseName")}
-                autoFocus
-                margin="dense"
-                label="e.g. Anatomy, Patho"
-                fullWidth
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={this.handleClose} color="primary">
-                Cancel
-              </Button>
-              <Button onClick={this.handleAdd} color="primary">
-                Add
-              </Button>
-            </DialogActions>
-          </Dialog>
-          <IndividualCourse
-            stopEdit={this.handleStopEdit}
-            editCourse={this.state.editCourse}
-            courseName={this.state.activeCourse}
-            deleteCourse={this.handleDelete}
-          />
-          <ErrorSnackBar
-            isOpen={this.state.errorOpen}
-            isClosed={this.handleErrorClosed}
-            errorMessage={this.state.errorMessage}
-          />
-        </Fragment>
-      );
-    }
+          <AddIcon />
+        </Fab>
+        <Dialog
+          fullWidth={true}
+          open={this.state.open}
+          onClose={this.handleClose}
+        >
+          <DialogTitle>New Course</DialogTitle>
+          <DialogContent>
+            <TextField
+              onChange={this.handleChange("courseName")}
+              autoFocus
+              margin="dense"
+              label="e.g. Anatomy, Patho"
+              fullWidth
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={this.handleAdd} color="primary">
+              Add
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <IndividualCourse
+          stopEdit={this.handleStopEdit}
+          editCourse={this.state.editCourse}
+          courseName={this.state.activeCourse}
+          deleteCourse={this.handleDelete}
+        />
+        <ErrorSnackBar
+          isOpen={this.state.errorOpen}
+          isClosed={this.handleErrorClosed}
+          errorMessage={this.state.errorMessage}
+        />
+      </Fragment>
+    );
   }
 }
 

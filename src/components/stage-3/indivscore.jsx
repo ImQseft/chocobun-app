@@ -5,9 +5,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import Typography from "@material-ui/core/Typography";
 import { Fragment } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -16,6 +14,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import ErrorSnackBar from "../extra-pages/errorsnackbar";
+import { Typography } from "@material-ui/core";
 
 function createData(name, yscore, titems) {
   return { name, yscore, titems };
@@ -30,7 +29,8 @@ class IndivScore extends React.Component {
     open: false,
     counter: 1,
     errorOpen: false,
-    errorMessage: ""
+    errorMessage: "",
+    openPrompt: false
   };
 
   componentDidMount() {
@@ -169,15 +169,17 @@ class IndivScore extends React.Component {
   };
 
   handleDeleteSyllabus = () => {
-    const tempArray = this.state.allScores;
-    if (tempArray.length === 0) {
-      this.props.deleteSyllabus(this.props.syllabusName);
-    } else {
-      this.setState({
-        errorOpen: true,
-        errorMessage: "Please clear scores before deleting syllabus."
-      });
-    }
+    this.clearScores();
+    this.props.deleteSyllabus(this.props.syllabusName);
+    this.handleDialogClose();
+  };
+
+  handleDialogOpen = () => {
+    this.setState({ openPrompt: true });
+  };
+
+  handleDialogClose = () => {
+    this.setState({ openPrompt: false });
   };
 
   render() {
@@ -191,17 +193,15 @@ class IndivScore extends React.Component {
                   <Typography>Base</Typography>
                 </TableCell>
                 <TableCell align="left">
-                  <FormControl>
-                    <Select
-                      native
-                      value={this.state.base}
-                      onChange={this.handleChangeBase}
-                    >
-                      <option value={65}>65</option>
-                      <option value={60}>60</option>
-                      <option value={50}>50</option>
-                    </Select>
-                  </FormControl>
+                  <Select
+                    native
+                    value={this.state.base}
+                    onChange={this.handleChangeBase}
+                  >
+                    <option value={65}>65</option>
+                    <option value={60}>60</option>
+                    <option value={50}>50</option>
+                  </Select>
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -209,9 +209,7 @@ class IndivScore extends React.Component {
               {this.state.allScores.map(score => {
                 return (
                   <TableRow key={score.name}>
-                    <TableCell component="th" scope="row">
-                      {score.name}
-                    </TableCell>
+                    <TableCell>{score.name}</TableCell>
                     <TableCell align="right">
                       {score.yscore + "/" + score.titems}
                     </TableCell>
@@ -244,7 +242,7 @@ class IndivScore extends React.Component {
         <div className="deleteSyllabus">
           <Button
             size="small"
-            onClick={this.handleDeleteSyllabus}
+            onClick={this.handleDialogOpen}
             variant="text"
             color="primary"
           >
@@ -280,6 +278,21 @@ class IndivScore extends React.Component {
             </Button>
             <Button onClick={this.handleAdd} color="primary">
               Add
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Dialog
+          fullWidth={true}
+          open={this.state.openPrompt}
+          onClose={this.handleDialogClose}
+        >
+          <DialogTitle>{"Delete " + this.props.syllabusName + "?"}</DialogTitle>
+          <DialogActions>
+            <Button onClick={this.handleDialogClose} color="primary">
+              No
+            </Button>
+            <Button onClick={this.handleDeleteSyllabus} color="primary">
+              Yes
             </Button>
           </DialogActions>
         </Dialog>

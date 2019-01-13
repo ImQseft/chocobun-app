@@ -56,12 +56,7 @@ class CourseSyllabus extends React.Component {
   };
 
   componentDidMount() {
-    this.props.onRef(this);
     this.hydrateStateWithLocalStorage();
-  }
-
-  componentWillUnmount() {
-    this.props.onRef(undefined);
   }
 
   hydrateStateWithLocalStorage() {
@@ -100,7 +95,7 @@ class CourseSyllabus extends React.Component {
     }
   };
 
-  handleChange = panel => (event, expanded) => {
+  handleChange = panel => (_, expanded) => {
     this.setState({
       expanded: expanded ? panel : false
     });
@@ -181,8 +176,8 @@ class CourseSyllabus extends React.Component {
     const listSyllabus = allSyllabus.map(syllabus => (
       <ExpansionPanel
         key={syllabus.name}
-        expanded={expanded === "panel" + syllabus.name}
-        onChange={this.handleChange("panel" + syllabus.name)}
+        expanded={expanded === syllabus.name}
+        onChange={this.handleChange(syllabus.name)}
       >
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography className={classes.heading}>
@@ -200,7 +195,6 @@ class CourseSyllabus extends React.Component {
               syllabusName={syllabus.name}
               transmutedGrade={this.handleGrades}
               syllabusWeight={syllabus.wt}
-              onRef={ref => (this.indivScore = ref)}
             />
           </div>
         </ExpansionPanelDetails>

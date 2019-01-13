@@ -73,7 +73,7 @@ class Transmute extends React.Component {
         <div className="positionFixed">
           <div className="scoreInput">
             <FormControl>
-              <InputLabel htmlFor="base-native-simple">Base</InputLabel>
+              <InputLabel>Base</InputLabel>
               <Select
                 native
                 value={this.state.base}
@@ -85,7 +85,6 @@ class Transmute extends React.Component {
               </Select>
             </FormControl>
             <TextField
-              id="standard-yourScore"
               label="Your Score"
               value={this.state.yourScore}
               onChange={this.handleChange("yourScore")}
@@ -94,7 +93,6 @@ class Transmute extends React.Component {
               type="tel"
             />
             <TextField
-              id="standard-totalItems"
               label="Total Items"
               value={this.state.totalItems}
               onChange={this.handleChange("totalItems")}

@@ -12,10 +12,12 @@ import Chip from "@material-ui/core/Chip";
 import update from "immutability-helper";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 const styles = {
   appBar: {
-    position: "relative"
+    position: "fixed"
   },
   flex: {
     flex: 1
@@ -41,7 +43,8 @@ function computeValue(listTG) {
 
 class IndividualCourse extends React.Component {
   state = {
-    courseGrades: []
+    courseGrades: [],
+    openPrompt: false
   };
 
   componentDidMount() {
@@ -91,9 +94,26 @@ class IndividualCourse extends React.Component {
   };
 
   handleDeleteCourse = () => {
-    if (this.courseSyllabus.clearSyllabus()) {
-      this.props.deleteCourse(this.props.courseName);
+    this.props.deleteCourse(this.props.courseName);
+    const tempArray = this.state.courseGrades.filter(
+      course => course.name !== this.props.courseName
+    );
+    this.updateState("courseGrades", tempArray);
+    localStorage.removeItem("cs_" + this.props.courseName + "_allSyllabus");
+    for (let key in localStorage) {
+      if (key.startsWith("is_" + this.props.courseName)) {
+        localStorage.removeItem(key);
+      }
     }
+    this.handleDialogClose();
+  };
+
+  handleDialogOpen = () => {
+    this.setState({ openPrompt: true });
+  };
+
+  handleDialogClose = () => {
+    this.setState({ openPrompt: false });
   };
 
   render() {
@@ -118,7 +138,7 @@ class IndividualCourse extends React.Component {
               <Typography variant="h6" color="inherit" className={classes.flex}>
                 {this.props.courseName}
               </Typography>
-              <IconButton onClick={this.handleDeleteCourse} color="inherit">
+              <IconButton onClick={this.handleDialogOpen} color="inherit">
                 <DeleteIcon />
               </IconButton>
               <Button onClick={this.props.stopEdit} color="inherit">
@@ -126,12 +146,12 @@ class IndividualCourse extends React.Component {
               </Button>
             </Toolbar>
           </AppBar>
+          <Toolbar />
           <div>
             <CourseSyllabus
               finalGrade={this.handleGrades}
               selectedCourse={this.props.courseName}
               addSyllabus={this.handleAdd}
-              onRef={ref => (this.courseSyllabus = ref)}
             />
             <Chip
               className="finalSGrade"
@@ -139,6 +159,21 @@ class IndividualCourse extends React.Component {
               color="primary"
             />
           </div>
+        </Dialog>
+        <Dialog
+          fullWidth={true}
+          open={this.state.openPrompt}
+          onClose={this.handleDialogClose}
+        >
+          <DialogTitle>{"Delete " + this.props.courseName + "?"}</DialogTitle>
+          <DialogActions>
+            <Button onClick={this.handleDialogClose} color="primary">
+              No
+            </Button>
+            <Button onClick={this.handleDeleteCourse} color="primary">
+              Yes
+            </Button>
+          </DialogActions>
         </Dialog>
       </Fragment>
     );
