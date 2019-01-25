@@ -25,7 +25,7 @@ class Main extends React.Component {
       <Router basename={process.env.PUBLIC_URL}>
         <Fragment>
           <div className="noselect">
-            <NavBar handleReset={this.handleReset} />
+            <NavBar installed={true} handleReset={this.handleReset} />
             <Switch>
               <Route
                 exact

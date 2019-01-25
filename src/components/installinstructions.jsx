@@ -19,76 +19,92 @@ const header = {
 };
 
 const InstallInstructions = () => {
+  const android = (
+    <div key="android">
+      <Typography style={bold} variant="h6">
+        For Android
+      </Typography>
+      <ol>
+        <li>
+          <Typography variant="body1" gutterBottom>
+            Make sure you are using
+            <span style={bold}> Google Chrome</span>. Other browsers are not yet
+            supported.
+          </Typography>
+        </li>
+        <li>
+          <Typography variant="body1">
+            If a banner pops up, just tap "Add Chocobun to Home screen" then
+            proceed to step 5. Otherwise, skip this step and proceed to step 3.
+          </Typography>
+          <img src={Installa1} alt="Step 2" width="90%" />
+        </li>
+        <li>
+          <Typography variant="body1">
+            Tap the three dots on the upper right corner of the screen.
+          </Typography>
+          <img src={Installa2} alt="Step 3" width="90%" />
+        </li>
+        <li>
+          <Typography variant="body1">Tap "Add to Home screen".</Typography>
+          <img src={Installa3} alt="Step 4" width="90%" />
+        </li>
+        <li>
+          <Typography variant="body1">
+            Tap "Add". Installing might take a few seconds. After it's done, the
+            app should automatically appear in your home screen.
+          </Typography>
+          <img src={Installa4} alt="Step 5" width="90%" />
+        </li>
+      </ol>
+    </div>
+  );
+
+  const ios = (
+    <div key="ios">
+      <Typography style={bold} variant="h6">
+        For iOS
+      </Typography>
+      <ol>
+        <li>
+          <Typography variant="body1" gutterBottom>
+            Make sure you are using
+            <span style={bold}> Safari</span>. Other browsers are not yet
+            supported.
+          </Typography>
+        </li>
+        <li>
+          <Typography variant="body1">Tap this icon.</Typography>
+          <img src={Installi1} alt="Step 2" width="90%" />
+        </li>
+        <li>
+          <Typography variant="body1">Tap "Add to Home Screen".</Typography>
+          <img src={Installi2} alt="Step 3" width="90%" />
+        </li>
+        <li>
+          <Typography variant="body1">
+            Wait for the icon to change, then tap "Add".
+          </Typography>
+          <img src={Installi3} alt="Step 4" width="90%" />
+        </li>
+      </ol>
+    </div>
+  );
+  let instructions;
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  if (/android/i.test(userAgent)) {
+    instructions = [android, ios];
+  } else {
+    instructions = [ios, android];
+  }
   return (
     <div>
-      <NavBar />
+      <NavBar installed={false} />
       <div className="installInstructions">
         <Typography style={header} variant="h4" gutterBottom>
           How to install:
         </Typography>
-        <Typography style={bold} variant="h6">
-          For iOS
-        </Typography>
-        <ol>
-          <li>
-            <Typography variant="body1" gutterBottom>
-              Make sure you are using
-              <span style={bold}> Safari</span>. Other browsers are not yet
-              supported.
-            </Typography>
-          </li>
-          <li>
-            <Typography variant="body1">Tap this icon.</Typography>
-            <img src={Installi1} alt="Step 2" width="90%" />
-          </li>
-          <li>
-            <Typography variant="body1">Tap "Add to Home Screen".</Typography>
-            <img src={Installi2} alt="Step 3" width="90%" />
-          </li>
-          <li>
-            <Typography variant="body1">
-              Wait for the icon to change, then tap "Add".
-            </Typography>
-            <img src={Installi3} alt="Step 4" width="90%" />
-          </li>
-        </ol>
-        <Typography style={bold} variant="h6">
-          For Android
-        </Typography>
-        <ol>
-          <li>
-            <Typography variant="body1" gutterBottom>
-              Make sure you are using
-              <span style={bold}> Google Chrome</span>. Other browsers are not
-              yet supported.
-            </Typography>
-          </li>
-          <li>
-            <Typography variant="body1">
-              If a banner pops up, just tap "Add Chocobun to Home screen" then
-              proceed to step 5. Otherwise, skip this step and proceed to step
-              3.
-            </Typography>
-            <img src={Installa1} alt="Step 2" width="90%" />
-          </li>
-          <li>
-            <Typography variant="body1">
-              Tap the three dots on the upper right corner of the screen.
-            </Typography>
-            <img src={Installa2} alt="Step 3" width="90%" />
-          </li>
-          <li>
-            <Typography variant="body1">Tap "Add to Home screen".</Typography>
-            <img src={Installa3} alt="Step 4" width="90%" />
-          </li>
-          <li>
-            <Typography variant="body1">
-              Tap "Add". Installing might take a few seconds. After it's done,
-              the app should automatically appear in your home screen.
-            </Typography>
-            <img src={Installa4} alt="Step 5" width="90%" />
-          </li>
-        </ol>
+        {instructions}
       </div>
     </div>
   );

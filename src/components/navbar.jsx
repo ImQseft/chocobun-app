@@ -18,7 +18,9 @@ class NavBar extends React.Component {
             <Typography variant="h6" color="inherit">
               Chocobun
             </Typography>
-            <ClearMenu resetState={this.handleReset} />
+            {this.props.installed && (
+              <ClearMenu resetState={this.handleReset} />
+            )}
           </Toolbar>
         </AppBar>
         <Toolbar />

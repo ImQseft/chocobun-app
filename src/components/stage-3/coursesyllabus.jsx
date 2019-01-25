@@ -82,19 +82,6 @@ class CourseSyllabus extends React.Component {
     );
   };
 
-  clearSyllabus = () => {
-    const tempArray = this.state.allSyllabus;
-    if (tempArray.length === 0) {
-      return true;
-    } else {
-      this.setState({
-        errorOpen: true,
-        errorMessage: "Please delete all syllabi before deleting course."
-      });
-      return false;
-    }
-  };
-
   handleChange = panel => (_, expanded) => {
     this.setState({
       expanded: expanded ? panel : false
@@ -120,7 +107,7 @@ class CourseSyllabus extends React.Component {
     this.updateState(
       "allSyllabus",
       update(this.state.allSyllabus, {
-        [index]: { tg: { $set: "Transmuted Grade: " + transmutedGrade } }
+        [index]: { tg: { $set: transmutedGrade } }
       })
     );
     this.props.finalGrade(name, (transmutedGrade * weight) / 100);
@@ -137,7 +124,7 @@ class CourseSyllabus extends React.Component {
       this.props.addSyllabus(this.props.selectedCourse, syllabusName);
       this.updateState("allSyllabus", [
         ...allSyllabus,
-        createData(syllabusName, "Transmuted Grade: 0", weight)
+        createData(syllabusName, 0, weight)
       ]);
     } else if (listSyllabus.includes(syllabusName)) {
       this.setState({
@@ -184,7 +171,7 @@ class CourseSyllabus extends React.Component {
             {syllabus.name + " (" + syllabus.wt + "%)"}
           </Typography>
           <Typography className={classes.secondaryHeading}>
-            {syllabus.tg}
+            {"Transmuted Grade: " + syllabus.tg}
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
