@@ -20,23 +20,23 @@ self.__precacheManifest = [
     "url": "/chocobun-app/static/media/installa2.1d8d9e03.png"
   },
   {
-    "revision": "9180ac00365e817b8dd7",
-    "url": "/chocobun-app/static/js/runtime~main.9180ac00.js"
+    "revision": "6e97694aa186d1c9dab8",
+    "url": "/chocobun-app/static/js/runtime~main.a822fd7b.js"
   },
   {
-    "revision": "74518b515edc3435d805",
-    "url": "/chocobun-app/static/js/main.74518b51.chunk.js"
+    "revision": "dbee73005da5213e6013",
+    "url": "/chocobun-app/static/js/main.dbed6e9d.chunk.js"
   },
   {
-    "revision": "2fbad6ab6d024d8f557b",
-    "url": "/chocobun-app/static/js/1.2fbad6ab.chunk.js"
+    "revision": "b27bda08b49123779368",
+    "url": "/chocobun-app/static/js/2.64af57bb.chunk.js"
   },
   {
-    "revision": "74518b515edc3435d805",
-    "url": "/chocobun-app/static/css/main.6848c82c.chunk.css"
+    "revision": "dbee73005da5213e6013",
+    "url": "/chocobun-app/static/css/main.5af9c583.chunk.css"
   },
   {
-    "revision": "a7cb34bf5ddd6a27c90f4232db5923e4",
+    "revision": "f3f52a944decf4cd9b26f1bdd6f3ed39",
     "url": "/chocobun-app/index.html"
   }
 ];
