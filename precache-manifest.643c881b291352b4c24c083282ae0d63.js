@@ -24,19 +24,19 @@ self.__precacheManifest = [
     "url": "/chocobun-app/static/js/runtime~main.a822fd7b.js"
   },
   {
-    "revision": "5c3a1afbee9972d89716",
-    "url": "/chocobun-app/static/js/main.b12d9b17.chunk.js"
+    "revision": "ca50c5dabe14a98293d4",
+    "url": "/chocobun-app/static/js/main.12238b1f.chunk.js"
   },
   {
     "revision": "5c749f470557e553da5e",
     "url": "/chocobun-app/static/js/2.062a505a.chunk.js"
   },
   {
-    "revision": "5c3a1afbee9972d89716",
+    "revision": "ca50c5dabe14a98293d4",
     "url": "/chocobun-app/static/css/main.5af9c583.chunk.css"
   },
   {
-    "revision": "dabf6192c7dc715cbb05aec9d9e6403d",
+    "revision": "76b9b1244628fd5546aabd6b1569a390",
     "url": "/chocobun-app/index.html"
   }
 ];
