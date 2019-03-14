@@ -17,18 +17,23 @@ class App extends Component {
       displayApp = <Main />;
     } else displayApp = <InstallInstructions />;
 
-    return <div className="App">{displayApp}</div>;
+    return <div>{displayApp}</div>;
   }
 }
 export default App;
 
-//Disable zooming to feel more native
-window.addEventListener(
-  "touchmove",
-  function(event) {
-    if (event.scale !== 1) {
-      event.preventDefault();
-    }
-  },
-  { passive: false }
-);
+//Disable zooming in iOS to feel more native
+const iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+if (iOS) {
+  window.addEventListener(
+    "touchmove",
+    function(event) {
+      if (event.scale !== 1) {
+        event.preventDefault();
+      }
+    },
+    { passive: false }
+  );
+}
+
+

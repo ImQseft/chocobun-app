@@ -30,7 +30,8 @@ class IndivScore extends React.Component {
     counter: 1,
     errorOpen: false,
     errorMessage: "",
-    openPrompt: false
+    openPrompt: false,
+    openPrompt2: false
   };
 
   componentDidMount() {
@@ -158,6 +159,15 @@ class IndivScore extends React.Component {
     this.updateState("base", event.target.value);
   };
 
+  handleClearScores = () => {
+    this.clearScores();
+    this.handleDialogClose2();
+    this.setState({
+      errorOpen: true,
+      errorMessage: "Cleared all " + this.props.syllabusName + " scores."
+    });
+  };
+
   clearScores = () => {
     this.updateState("allScores", []);
     this.updateState("counter", 1);
@@ -166,6 +176,27 @@ class IndivScore extends React.Component {
       0,
       this.props.syllabusWeight
     );
+  };
+
+  handleDeleteScore = scoreName => {
+    const tempArray = this.state.allScores.filter(
+      score => score.name !== scoreName
+    );
+    let tempCounter = 1;
+    if (tempArray.length > 0) {
+      for (let temp in tempArray) {
+        tempArray[temp].name = this.props.syllabusName + " " + tempCounter;
+        tempCounter += 1;
+      }
+      this.updateState("allScores", tempArray);
+      this.updateState("counter", tempCounter);
+    } else {
+      this.clearScores();
+    }
+    this.setState({
+      errorOpen: true,
+      errorMessage: "Deleted " + scoreName + ". Other score/s adjusted."
+    });
   };
 
   handleDeleteSyllabus = () => {
@@ -182,6 +213,14 @@ class IndivScore extends React.Component {
     this.setState({ openPrompt: false });
   };
 
+  handleDialogOpen2 = () => {
+    this.setState({ openPrompt2: true });
+  };
+
+  handleDialogClose2 = () => {
+    this.setState({ openPrompt2: false });
+  };
+
   render() {
     return (
       <Fragment>
@@ -189,7 +228,7 @@ class IndivScore extends React.Component {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell align="right">
+                <TableCell align="left">
                   <Typography>Base</Typography>
                 </TableCell>
                 <TableCell align="left">
@@ -203,6 +242,7 @@ class IndivScore extends React.Component {
                     <option value={50}>50</option>
                   </Select>
                 </TableCell>
+                <TableCell />
               </TableRow>
             </TableHead>
             <TableBody>
@@ -210,8 +250,14 @@ class IndivScore extends React.Component {
                 return (
                   <TableRow key={score.name}>
                     <TableCell>{score.name}</TableCell>
-                    <TableCell align="right">
+                    <TableCell align="left">
                       {score.yscore + "/" + score.titems}
+                    </TableCell>
+                    <TableCell
+                      align="center"
+                      onClick={() => this.handleDeleteScore(score.name)}
+                    >
+                      <Typography>X</Typography>
                     </TableCell>
                   </TableRow>
                 );
@@ -221,7 +267,7 @@ class IndivScore extends React.Component {
           <div className="tableButtons">
             <Button
               size="small"
-              onClick={this.clearScores}
+              onClick={this.handleDialogOpen2}
               variant="contained"
               color="primary"
             >
@@ -292,6 +338,21 @@ class IndivScore extends React.Component {
               No
             </Button>
             <Button onClick={this.handleDeleteSyllabus} color="primary">
+              Yes
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Dialog
+          fullWidth={true}
+          open={this.state.openPrompt2}
+          onClose={this.handleDialogClose2}
+        >
+          <DialogTitle>{"Clear all scores?"}</DialogTitle>
+          <DialogActions>
+            <Button onClick={this.handleDialogClose2} color="primary">
+              No
+            </Button>
+            <Button onClick={this.handleClearScores} color="primary">
               Yes
             </Button>
           </DialogActions>

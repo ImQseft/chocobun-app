@@ -1,17 +1,13 @@
 /* transmute.jsx */
-
 .scoreInput {
   margin: 5% 5% 0% 5%;
 }
-
 .transmuteButton {
   margin: 5% 5% 0% 5%;
 }
-
 .transmuteResult {
   margin: 2% 5% 0% 5%;
 }
-
 .positionFixed {
   position: fixed;
   width: 100vw;
@@ -19,49 +15,41 @@
 }
 
 /* individualcourse.jsx */
-
 .finalSGrade {
   width: 90%;
   margin: 5% 5% 5% 5%;
 }
 
 /* coursesyllabus.jsx */
-
 .addSyllabusDiv {
   position: relative;
   width: 100%;
 }
 
 /* coursesyllabus.jsx */
-
 .smallTextField {
   width: 18vw;
 }
 
 /* indivscore.jsx */
-
 .deleteSyllabus {
   margin-top: 10%;
   text-align: center;
 }
-
 .tableButtons {
   margin: 5% 5% 5% 5%;
 }
-
 .alignRight {
   position: absolute;
   right: 0;
   margin-right: 5%;
 }
-
 .tableBody {
   width: 100%;
   overflow-x: hidden;
 }
 
 /* botnav.jsx */
-
 .botnav {
   position: fixed;
   bottom: 0px;
@@ -69,13 +57,11 @@
 }
 
 /* installinstructions.jsx */
-
 .installInstructions {
   margin: 5% 5% 5% 5%;
 }
 
 /* main.jsx */
-
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
