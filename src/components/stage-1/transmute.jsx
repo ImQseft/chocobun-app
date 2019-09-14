@@ -41,9 +41,49 @@ class Transmute extends React.Component {
     let tScore, pScore, scoreStat;
     let divScore =
       parseFloat(this.state.yourScore) / parseFloat(this.state.totalItems);
-
     if (this.state.base === "65") {
-      tScore = divScore * 71.5 + 28.5;
+      tScore = (this.state.yourScore * 100) / this.state.totalItems;
+      if (tScore <= 2) {
+        //
+      } else if (tScore <= 6) {
+        tScore = tScore + 1;
+      } else if (tScore <= 10) {
+        tScore = tScore + 2;
+      } else if (tScore <= 14) {
+        tScore = tScore + 3;
+      } else if (tScore <= 18) {
+        tScore = tScore + 4;
+      } else if (tScore <= 27) {
+        tScore = tScore + 5;
+      } else if (tScore <= 36) {
+        tScore = tScore + 6;
+      } else if (tScore <= 47) {
+        tScore = tScore + 7;
+      } else if (tScore <= 54) {
+        tScore = tScore + 8;
+      } else if (tScore <= 63) {
+        tScore = tScore + 9;
+      } else if (tScore <= 66) {
+        tScore = tScore + 10;
+      } else if (tScore <= 69) {
+        tScore = tScore + 9;
+      } else if (tScore <= 72) {
+        tScore = tScore + 8;
+      } else if (tScore <= 76) {
+        tScore = tScore + 7;
+      } else if (tScore <= 80) {
+        tScore = tScore + 6;
+      } else if (tScore <= 83) {
+        tScore = tScore + 5;
+      } else if (tScore <= 87) {
+        tScore = tScore + 4;
+      } else if (tScore <= 90) {
+        tScore = tScore + 3;
+      } else if (tScore <= 94) {
+        tScore = tScore + 2;
+      } else if (tScore <= 97) {
+        tScore = tScore + 1;
+      }
       tScore = Math.round(tScore);
       pScore = parseFloat(this.state.totalItems) * 0.65;
     } else if (this.state.base === "60") {

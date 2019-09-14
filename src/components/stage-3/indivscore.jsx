@@ -91,15 +91,55 @@ class IndivScore extends React.Component {
         .map(scores => scores.titems)
         .reduce(add);
 
-      let transmuted = sumYScores / sumTItems;
-
+      let transmuted;
       const base = this.state.base.toString();
       if (base === "65") {
-        transmuted = transmuted * 71.5 + 28.5;
+        transmuted = (sumYScores * 100) / sumTItems;
+        if (transmuted <= 2) {
+          //
+        } else if (transmuted <= 6) {
+          transmuted = transmuted + 1;
+        } else if (transmuted <= 10) {
+          transmuted = transmuted + 2;
+        } else if (transmuted <= 14) {
+          transmuted = transmuted + 3;
+        } else if (transmuted <= 18) {
+          transmuted = transmuted + 4;
+        } else if (transmuted <= 27) {
+          transmuted = transmuted + 5;
+        } else if (transmuted <= 36) {
+          transmuted = transmuted + 6;
+        } else if (transmuted <= 47) {
+          transmuted = transmuted + 7;
+        } else if (transmuted <= 54) {
+          transmuted = transmuted + 8;
+        } else if (transmuted <= 63) {
+          transmuted = transmuted + 9;
+        } else if (transmuted <= 66) {
+          transmuted = transmuted + 10;
+        } else if (transmuted <= 69) {
+          transmuted = transmuted + 9;
+        } else if (transmuted <= 72) {
+          transmuted = transmuted + 8;
+        } else if (transmuted <= 76) {
+          transmuted = transmuted + 7;
+        } else if (transmuted <= 80) {
+          transmuted = transmuted + 6;
+        } else if (transmuted <= 83) {
+          transmuted = transmuted + 5;
+        } else if (transmuted <= 87) {
+          transmuted = transmuted + 4;
+        } else if (transmuted <= 90) {
+          transmuted = transmuted + 3;
+        } else if (transmuted <= 94) {
+          transmuted = transmuted + 2;
+        } else if (transmuted <= 97) {
+          transmuted = transmuted + 1;
+        }
       } else if (base === "60") {
-        transmuted = transmuted * 62.5 + 37.5;
+        transmuted = (sumYScores / sumTItems) * 62.5 + 37.5;
       } else if (base === "50") {
-        transmuted = transmuted * 50 + 50;
+        transmuted = (sumYScores / sumTItems) * 50 + 50;
       }
 
       transmuted = Math.round(transmuted);
