@@ -35,5 +35,3 @@ if (iOS) {
     { passive: false }
   );
 }
-
-
