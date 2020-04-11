@@ -7,13 +7,16 @@ import Button from "@material-ui/core/Button";
 import { Fragment } from "react";
 import app from "./../../../package.json";
 
+let versionOutdated = "";
+let newLink = "";
+
 class Transmute extends React.Component {
   state = {
     base: "65",
     yourScore: "",
     totalItems: "",
     res1: "Chocobun App by Chocobun Fam",
-    res2: "v" + app.version
+    res2: `v${app.version}`,
   };
 
   resetState = () => {
@@ -21,10 +24,27 @@ class Transmute extends React.Component {
       base: "65",
       yourScore: "",
       totalItems: "",
-      res1: "Chocobun App by Chocobun Fam",
-      res2: "v" + app.version
+      res1: versionOutdated,
+      res2: newLink,
     });
   };
+
+  componentDidMount() {
+    versionOutdated = (
+      <span>
+        This version of the app is outdated. To download the latest version,
+        open the link below using <b>Chrome</b> if you're on Android, or{" "}
+        <b>Safari</b> if you're on iOS.
+      </span>
+    );
+    newLink = (
+      <span>
+        <u>https://chocobunapp.web.app/</u>
+      </span>
+    );
+
+    this.setState({ res1: versionOutdated, res2: newLink });
+  }
 
   componentDidUpdate() {
     if (this.props.reset) {
@@ -33,7 +53,7 @@ class Transmute extends React.Component {
     }
   }
 
-  handleChange = name => event => {
+  handleChange = (name) => (event) => {
     this.setState({ [name]: event.target.value });
   };
 
