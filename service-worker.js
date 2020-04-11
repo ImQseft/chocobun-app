@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/chocobun-app/precache-manifest.fd588ef6fd5c9cefd9da6600ac5c7fa9.js"
+  "/chocobun-app/precache-manifest.bd34ef2545150dd459a0aad59c42b769.js"
 );
 
 workbox.clientsClaim();
@@ -30,7 +30,7 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 workbox.routing.registerNavigationRoute("/chocobun-app/index.html", {
   
-  blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
+  blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });
 
 // Append custom lines
