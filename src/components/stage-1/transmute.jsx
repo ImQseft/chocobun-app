@@ -39,7 +39,7 @@ class Transmute extends React.Component {
     );
     newLink = (
       <span>
-        <u>https://chocobunapp.web.app/</u>
+        <u>https://chocobun.web.app/</u>
       </span>
     );
 

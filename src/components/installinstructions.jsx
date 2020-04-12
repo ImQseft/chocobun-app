@@ -21,7 +21,7 @@ const InstallInstructions = () => {
           <b>Safari</b> if you're on iOS.
         </p>
         <p>
-          <u>https://chocobunapp.web.app/</u>
+          <u>https://chocobun.web.app/</u>
         </p>
       </div>
     </div>
